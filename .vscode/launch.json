@@ -9,6 +9,15 @@
             "program": "${workspaceFolder}\\cmd\\main",
             "env": {},
             "args": []
+        },
+        {
+            "name": "Debug Client",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}\\cmd\\client",
+            "env": {},
+            "args": []
         }
     ]
 }
