@@ -28,6 +28,7 @@ func (s *server) GetCar(ctx context.Context, in *pb.CarRequest) (*pb.CarResponse
 	}, nil
 }
 
+// Start gRPC server in port(int)
 func StartServer(port int) {
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", port))
 	if err != nil {
