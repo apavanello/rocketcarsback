@@ -5,6 +5,8 @@ option go_package = "github.com/apavanello/rocketcarsback/pkg/pb";
 
 service CarsService {
     rpc GetCar (CarRequest) returns (CarResponse){} ; // RPC method
+    rpc GetCarsList (Null) returns (CarsListResponse){} ; // RPC method
+    rpc GetServerVersion (Null) returns (ServerVersionResponse){} ; // RPC method
 }
 
 message CarResponse {
@@ -20,12 +22,13 @@ message CarRequest {
     string name = 1;
 }
 
-message About {
+message ServerVersionResponse {
     string timestamp = 1;
     string version = 2;
 }
 
-message CarList {
-    repeated CarResponse cars = 1;
+message CarsListResponse {
+    repeated CarResponse car = 1;
 }
 
+message Null {}
