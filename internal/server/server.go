@@ -34,7 +34,7 @@ func (s *Server) GetServerVersion(ctx context.Context, in *pb.ServerVersionReque
 	return nil, nil
 }
 
-// Start gRPC server in port(int)
+// StartServer gRPC server in port(int)
 func StartServer(port int) {
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", port))
 	if err != nil {
