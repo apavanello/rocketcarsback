@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	s "github.com/apavanello/rocketcarsback/internal/cars"
+	s "github.com/apavanello/rocketcarsback/internal/server"
 	"github.com/apavanello/rocketcarsback/versioninfo"
 )
 

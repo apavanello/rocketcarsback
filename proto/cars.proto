@@ -1,34 +1,43 @@
 syntax = "proto3";
+
 package cars;
+option go_package = "pkg/pbcars";
 
-option go_package = "github.com/apavanello/rocketcarsback/pkg/pb";
 
-service CarsService {
-    rpc GetCar (CarRequest) returns (CarResponse){} ; // RPC method
-    rpc GetCarsList (Null) returns (CarsListResponse){} ; // RPC method
-    rpc GetServerVersion (Null) returns (ServerVersionResponse){} ; // RPC method
+
+message Car {
+    string name = 1;
+    double length = 2;
+    double width = 3;
+    double height = 4;
+    double SA = 5;
+    double elevation = 6;
 }
 
 message CarResponse {
-    string name = 1;
-    double length = 2;
-    double Width = 3;
-    double Height = 4;
-    double SA = 5;
-    double Elevation = 6;
+    Car car = 1;
 }
 
 message CarRequest {
     string name = 1;
 }
 
+message CarsListResponse {
+    repeated Car cars = 1;
+}
+
+message CarListRequest {}
+
+message ServerVersionRequest {}
+
 message ServerVersionResponse {
     string timestamp = 1;
     string version = 2;
 }
 
-message CarsListResponse {
-    repeated CarResponse car = 1;
-}
 
-message Null {}
+service CarsService {
+    rpc GetCar (CarRequest) returns (CarResponse){} ; // RPC method
+    rpc GetCarsList (CarListRequest) returns (CarsListResponse){} ; // RPC method
+    rpc GetServerVersion (ServerVersionRequest) returns (ServerVersionResponse){} ; // RPC method
+}

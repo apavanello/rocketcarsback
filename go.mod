@@ -5,13 +5,13 @@ go 1.17
 require (
 	github.com/pieterclaerhout/go-james v1.8.1
 	github.com/pieterclaerhout/go-log v1.14.0
-	google.golang.org/protobuf v1.26.0
+	google.golang.org/protobuf v1.27.1
 )
 
 require (
-	github.com/golang/protobuf v1.5.0 // indirect
-	golang.org/x/net v0.0.0-20200822124328-c89045814202 // indirect
-	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	golang.org/x/net v0.0.0-20220105145211-5b0dc2dfae98 // indirect
+	google.golang.org/genproto v0.0.0-20211223182754-3ac035c7e7cb // indirect
 )
 
 require (
