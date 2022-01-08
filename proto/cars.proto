@@ -23,7 +23,7 @@ message CarRequest {
 }
 
 message CarsListResponse {
-    repeated Car cars = 1;
+    Car cars = 1;
 }
 
 message CarListRequest {}
@@ -38,6 +38,6 @@ message ServerVersionResponse {
 
 service CarsService {
     rpc GetCar (CarRequest) returns (CarResponse){} ; // RPC method
-    rpc GetCarsList (CarListRequest) returns (CarsListResponse){} ; // RPC method
+    rpc GetCarsList (CarListRequest) returns (stream CarsListResponse){} ; // RPC method
     rpc GetServerVersion (ServerVersionRequest) returns (ServerVersionResponse){} ; // RPC method
 }

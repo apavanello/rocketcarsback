@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"time"
 
@@ -87,17 +88,26 @@ func goGetList() {
 	defer cc.Close()
 
 	// Contact the server and print out its response.
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	defer cancel()
+	ctx := context.Background()
 
 	req := &pb.CarListRequest{}
 
-	carListResponse, err := client.GetCarsList(ctx, req)
-
+	stream, err := client.GetCarsList(ctx, req)
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
-	j, _ := json.Marshal(carListResponse)
-	fmt.Println(string(j))
+
+	for {
+		carListResponse, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("could not stream the message: %v", err)
+		}
+
+		j, _ := json.Marshal(carListResponse.GetCars())
+		fmt.Println(string(j))
+	}
 
 }

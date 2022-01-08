@@ -21,12 +21,20 @@ func (s *Server) GetCar(ctx context.Context, in *pb.CarRequest) (car *pb.CarResp
 	return
 }
 
-func (s *Server) GetCarsList(ctx context.Context, in *pb.CarListRequest) (carsList *pb.CarsListResponse, err error) {
+func (s *Server) GetCarsList(req *pb.CarListRequest, stream pb.CarsService_GetCarsListServer) error {
 
-	carsList = ds.GetList()
-	err = nil
+	i := 0
+	for {
 
-	return carsList, err
+		clr, EOF := ds.GetList(i)
+
+		if EOF {
+			break
+		}
+		stream.Send(clr)
+		i++
+	}
+	return nil
 }
 
 func (s *Server) GetServerVersion(ctx context.Context, in *pb.ServerVersionRequest) (vsr *pb.ServerVersionResponse, err error) {
